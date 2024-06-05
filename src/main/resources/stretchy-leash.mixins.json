@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "tk.estecka.stretchyleash.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"LivingEntityMixin",
+		"MobEntityMixin",
+		"PathAwareEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

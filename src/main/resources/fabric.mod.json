@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "stretchy-leash",
+	"version": "${version}",
+	"name": "Stretchy Leash",
+	"description": "Leash can overstretch a bit before breaking.",
+	"authors": [
+		"Estecka"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/stretchy-leash/settings/description",
+		"sources": "https://github.com/Estecka/mc-Stretchy-Leash/"
+	},
+	"license": "MIT",
+	"icon": "assets/stretchy-leash/icon.png",
+
+	"environment": "*",
+	"entrypoints": {
+		"modmenu": [
+			"tk.estecka.stretchyleash.config.ModMenu"
+		],
+		"main": [
+		]
+	},
+	"mixins": [
+		"stretchy-leash.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"java": ">=21"
+	},
+	"recommends": {
+		"minecraft": ">=1.20.5"
+	},
+	"suggests": {
+		"minecraft": ">=1.19.4",
+		"modmenu": "*",
+		"cloth-config": "*"
+	}
+}

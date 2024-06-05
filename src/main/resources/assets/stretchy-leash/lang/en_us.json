@@ -1,0 +1,11 @@
+{
+	"stretchy-leash.gamerules": "Stretchy Leash",
+	"gamerule.stretchy-leash.gracePeriod": "Over-Stretch grace period",
+	"gamerule.stretchy-leash.gracePeriod.description": "How many ticks a leash can remain over-stretched before breaking. Gives leashed mobs an opportunity to get back within range.\nVanilla: 0",
+	"gamerule.stretchy-leash.lengthMax": "Leash maximum length",
+	"gamerule.stretchy-leash.lengthMax.description": "How far a leash can reach before becoming over-stretched.\nThis does not affect the distance at which mobs start being pulled.\nVanilla: 10.0",
+	"gamerule.stretchy-leash.pullStrength": "Leash pull strength",
+	"gamerule.stretchy-leash.pullStrength.description": "How strongly leashed mobs are pulled toward the leader.\nHelps when travelling at high speed.\nVanilla: 1.0",
+	"gamerule.stretchy-leash.stepHeight": "Leashed mobs step height",
+	"gamerule.stretchy-leash.stepHeight.description": "The minimum step height of mobs being pulled by a leash.\nHelps when travelling up slopes.\nVanilla: 0.0"
+}
