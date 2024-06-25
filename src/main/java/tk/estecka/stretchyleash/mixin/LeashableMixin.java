@@ -10,14 +10,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.Leashable;
+import net.minecraft.entity.Leashable.LeashData;
 import net.minecraft.sound.SoundEvents;
+import tk.estecka.stretchyleash.StretchData;
 import tk.estecka.stretchyleash.StretchyLeashMod;
+import tk.estecka.stretchyleash.StretchData.LeashDataDuck;
 
 import static tk.estecka.stretchyleash.StretchyLeashMod.CONFIG;
 
 @Mixin(Leashable.class)
 interface LeashableMixin
-extends Leashable
 {
 	@Mixin(Leashable.LeashData.class)
 	static class LeashDataMixin
@@ -31,20 +33,7 @@ extends Leashable
 		}
 	}
 
-	class StretchData {
-		public int graceTicks = CONFIG.graceTicks;
-		public boolean wasStretching = false;
-
-		static public StretchData Of(LeashData data){
-			return ((LeashDataDuck)(Object)data).stretchyLeash$GetData();
-		}
-	}
-
-	interface LeashDataDuck {
-		StretchData stretchyLeash$GetData();
-	}
-
-	@Inject(method="detachLeash", at=@At("HEAD"))
+	@Inject(method="detachLeash(Lnet/minecraft/entity/Entity;ZZ)V", at=@At("HEAD"))
 	static private void PlaySound(Entity entity, boolean _1, boolean _2, CallbackInfo info){
 		Leashable leashable = (Leashable)entity;
 		if (!entity.getWorld().isClient() && leashable.getLeashHolder() != null)
@@ -53,7 +42,7 @@ extends Leashable
 
 
 	@Inject( method="tickLeash", at=@At(value="INVOKE", target="net/minecraft/entity/Leashable.shouldTickLeash(Lnet/minecraft/entity/Entity;F)Z") )
-	static private void UpdateGracePeriod(Entity leashed, CallbackInfo info, @Local Entity holder, @Local LeashData data, @Local float length){
+	static private void UpdateGracePeriod(Entity leashed, CallbackInfo info, @Local(ordinal=1) Entity holder, @Local LeashData data, @Local float length){
 		StretchData customData = StretchData.Of(data);
 
 		if (holder == null)
@@ -77,14 +66,14 @@ extends Leashable
 	 * Intended to override the `if` condition that leads into `detachLeash`
 	 */
 	@ModifyConstant( method="tickLeash", constant=@Constant(doubleValue=10.0) )
-	static private float ApplyGracePeriod(float original, @Local LeashData data){
+	static private double ApplyGracePeriod(double original, @Local LeashData data){
 		if (StretchData.Of(data).graceTicks < 0)
-			return 0; // Should resist
+			return 0; // Leash should resist
 		else
-			return Float.POSITIVE_INFINITY; // Should break
+			return Double.POSITIVE_INFINITY; // Leash should break
 	}
 
-	@ModifyConstant( method="applyLeashElasticity", require=3, constant=@Constant(doubleValue=0.4) )
+	@ModifyConstant( method="applyLeashElasticity(Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/Entity;F)V", require=3, constant=@Constant(doubleValue=0.4) )
 	static private double PullStrength(double original){
 		return original * CONFIG.pullStrength;
 	}
