@@ -1,6 +1,7 @@
 package tk.estecka.stretchyleash.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,14 +16,32 @@ import tk.estecka.stretchyleash.StretchyLeashMod;
 import static tk.estecka.stretchyleash.StretchyLeashMod.CONFIG;
 
 @Mixin(Leashable.class)
-public interface LeashableMixin
+interface LeashableMixin
 extends Leashable
 {
-	@Mixin(LeashData.class)
-	static public class LeashDataMixin
-	{
+	@Mixin(Leashable.LeashData.class)
+	static class LeashDataMixin
+	implements LeashDataDuck {
+		@Unique
+		private final StretchData stretchData = new StretchData();
+		
+		@Override
+		public StretchData stretchyLeash$GetData(){
+			return this.stretchData;
+		}
+	}
+
+	class StretchData {
 		public int graceTicks = CONFIG.graceTicks;
 		public boolean wasStretching = false;
+
+		static public StretchData Of(LeashData data){
+			return ((LeashDataDuck)(Object)data).stretchyLeash$GetData();
+		}
+	}
+
+	interface LeashDataDuck {
+		StretchData stretchyLeash$GetData();
 	}
 
 	@Inject(method="detachLeash", at=@At("HEAD"))
@@ -35,7 +54,7 @@ extends Leashable
 
 	@Inject( method="tickLeash", at=@At(value="INVOKE", target="net/minecraft/entity/Leashable.shouldTickLeash(Lnet/minecraft/entity/Entity;F)Z") )
 	static private void UpdateGracePeriod(Entity leashed, CallbackInfo info, @Local Entity holder, @Local LeashData data, @Local float length){
-		LeashDataMixin customData = (LeashDataMixin)(Object)data;
+		StretchData customData = StretchData.Of(data);
 
 		if (holder == null)
 			customData.graceTicks = CONFIG.graceTicks;
@@ -59,8 +78,7 @@ extends Leashable
 	 */
 	@ModifyConstant( method="tickLeash", constant=@Constant(doubleValue=10.0) )
 	static private float ApplyGracePeriod(float original, @Local LeashData data){
-		LeashDataMixin customData = (LeashDataMixin)(Object)data;
-		if (customData.graceTicks < 0)
+		if (StretchData.Of(data).graceTicks < 0)
 			return 0; // Should resist
 		else
 			return Float.POSITIVE_INFINITY; // Should break
