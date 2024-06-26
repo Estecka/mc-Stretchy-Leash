@@ -41,7 +41,7 @@ import net.fabricmc.loader.api.FabricLoader;
 
 public class ConfigIO
 {
-	static public final String VERSION = "1.2";
+	static public final String VERSION = "1.3";
 	static private final Logger LOGGER = LoggerFactory.getLogger("ConfigIO");
 
 	private final File file;
@@ -68,7 +68,8 @@ public class ConfigIO
 	implements ICodec
 	{
 		/**
-		 * Defines a set of properties that will encoded into the config file
+		 * Defines the set of properties that will be looked for in the config
+		 * file.
 		 */
 		public abstract Map<String, Property<?>> GetProperties();
 
@@ -102,6 +103,7 @@ public class ConfigIO
 		static public Property<String>  String (Supplier<String>  getter, Consumer<String>  setter) { return new Property<>(getter, setter, s->s, s->s); }
 		static public Property<Integer> Integer(Supplier<Integer> getter, Consumer<Integer> setter) { return new Property<>(getter, setter, Integer::parseInt, i->i.toString()); }
 		static public Property<Float>   Float  (Supplier<Float>   getter, Consumer<Float>   setter) { return new Property<>(getter, setter, Float::parseFloat, f->f.toString()); }
+		static public Property<Double>  Double (Supplier<Double>  getter, Consumer<Double>  setter) { return new Property<>(getter, setter, Double::parseDouble, f->f.toString()); }
 		static public Property<Boolean> Boolean(Supplier<Boolean> getter, Consumer<Boolean> setter) { return new Property<>(getter, setter, Boolean::parseBoolean, b->b.toString()); }
 
 		public void Decode(String s){ this.setter.accept(this.parser.apply(s)); }

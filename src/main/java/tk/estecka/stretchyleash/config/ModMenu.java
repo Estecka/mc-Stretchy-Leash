@@ -28,7 +28,7 @@ implements ModMenuApi
 				.build()
 			);
 
-			category.addEntry(entries.startFloatField(Text.translatable("gamerule.stretchy-leash.lengthMax"), CONFIG.lengthMax)
+			category.addEntry(entries.startDoubleField(Text.translatable("gamerule.stretchy-leash.lengthMax"), CONFIG.lengthMax)
 				.setMin(0)
 				.setSaveConsumer(v -> CONFIG.lengthMax = v)
 				.setDefaultValue(defaultConfig.lengthMax)
@@ -36,7 +36,7 @@ implements ModMenuApi
 				.build()
 			);
 
-			category.addEntry(entries.startFloatField(Text.translatable("gamerule.stretchy-leash.pullStrength"), CONFIG.pullStrength)
+			category.addEntry(entries.startDoubleField(Text.translatable("gamerule.stretchy-leash.pullStrength"), CONFIG.pullStrength)
 				.setMin(0)
 				.setSaveConsumer(v -> CONFIG.pullStrength = v)
 				.setDefaultValue(defaultConfig.pullStrength)
