@@ -19,7 +19,7 @@ Vanilla: 0
 
 Controls how long a leash can remain over-stretched without breaking.
 
-#### `maxLength` (Float)
+#### `maxLength` (Double)
 Default: 10 blocks  
 Vanilla: 10 blocks  
 
@@ -27,7 +27,7 @@ Controls how far a leash can reach before starting to over-stretch.
 
 This does not affect the distance at wich mobs start being pulled in (6 blocks).
 
-#### `pullStrength` (Float)
+#### `pullStrength` (Double)
 Default: 2  
 Vanilla: 1  
 
