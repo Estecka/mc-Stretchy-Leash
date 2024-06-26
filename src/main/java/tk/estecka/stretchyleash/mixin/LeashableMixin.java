@@ -48,7 +48,7 @@ interface LeashableMixin
 		if (holder == null)
 			customData.graceTicks = CONFIG.graceTicks;
 		else {
-			boolean isStretching = CONFIG.lengthMax < length;
+			boolean isStretching = Leashable.field_52314 < length;
 
 			if (isStretching) {
 				--customData.graceTicks;

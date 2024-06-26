@@ -25,6 +25,7 @@
 	"mixins": [
 		"stretchy-leash.mixins.json"
 	],
+	"accessWidener" : "stretchy-leash.accesswidener",
 	"depends": {
 		"minecraft": "~1.21",
 		"fabricloader": ">=0.15.11",

@@ -4,6 +4,7 @@ import java.io.IOException;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
+import net.minecraft.entity.Leashable;
 import net.minecraft.text.Text;
 import tk.estecka.stretchyleash.StretchyLeashMod;
 import static tk.estecka.stretchyleash.StretchyLeashMod.CONFIG;
@@ -28,10 +29,10 @@ implements ModMenuApi
 				.build()
 			);
 
-			category.addEntry(entries.startFloatField(Text.translatable("gamerule.stretchy-leash.lengthMax"), CONFIG.lengthMax)
+			category.addEntry(entries.startDoubleField(Text.translatable("gamerule.stretchy-leash.lengthMax"), Leashable.field_52314)
 				.setMin(0)
-				.setSaveConsumer(v -> CONFIG.lengthMax = v)
-				.setDefaultValue(defaultConfig.lengthMax)
+				.setSaveConsumer(v -> Leashable.field_52314 = v)
+				.setDefaultValue(10.0)
 				.setTooltip(Text.translatable("gamerule.stretchy-leash.lengthMax.description"))
 				.build()
 			);
