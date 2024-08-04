@@ -8,4 +8,4 @@
 ## 2.0.0
 - Ported to MC 1.21. Major rewrite.
 ## 2.1.0
-- Config can be changed on dedicated servers using commands.
+- Added a command to change the config at runtime on dedicated server.
