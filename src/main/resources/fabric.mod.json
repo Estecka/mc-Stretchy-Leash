@@ -20,6 +20,7 @@
 			"tk.estecka.stretchyleash.config.ModMenu"
 		],
 		"main": [
+			"tk.estecka.stretchyleash.StretchyLeashMod"
 		]
 	},
 	"mixins": [

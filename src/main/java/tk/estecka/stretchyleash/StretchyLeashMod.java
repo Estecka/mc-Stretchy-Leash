@@ -1,22 +1,30 @@
 package tk.estecka.stretchyleash;
 
 import java.io.IOException;
+import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tk.estecka.stretchyleash.config.Command;
 import tk.estecka.stretchyleash.config.Config;
 import tk.estecka.stretchyleash.config.ConfigIO;
 
 public class StretchyLeashMod
+implements ModInitializer
 {
-	static public final Logger LOGGER = LoggerFactory.getLogger("stretchy-leash");
-	static public final ConfigIO IO = new ConfigIO("stretchy-leash.properties");
+	static public final String MODID = "stretchy-leash";
+
+	static public final Logger LOGGER = LoggerFactory.getLogger(MODID);
+	static public final ConfigIO IO = new ConfigIO(MODID+".properties");
 	static public final Config CONFIG = new Config();
 
-	static {
+	@Override
+	public void onInitialize(){
+		Command.Register();
+
 		try {
 			IO.GetIfExists(CONFIG);
 		}
