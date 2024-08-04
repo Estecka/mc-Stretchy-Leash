@@ -7,6 +7,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.client.realms.Request.Get;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
@@ -39,6 +40,7 @@ public class Command
 
 		config.then(argument(PROP_ARG, string())
 			.suggests(Command::PropertyName)
+			.executes(Command::Get)
 			.then(argument(VALUE_ARG, greedyString())
 				.executes(Command::Set)
 			)
@@ -55,6 +57,28 @@ public class Command
 		return builder.buildFuture();
 	}
 
+	static private int Get(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+		String name = getString(context, PROP_ARG);
+
+		Property<?> property = CONFIG.GetProperties().get(name);
+		if (property == null){
+			context.getSource().sendError(Text.literal("No such property"));
+			return 0;
+		}
+
+		String value;
+		try {
+			value = property.Encode();
+		}
+		catch (IllegalArgumentException e) {
+			context.getSource().sendError(Text.literal(e.toString()));
+			return -1;
+		}
+
+		context.getSource().sendMessage(Text.literal(name+"="+value));
+		return 0;
+	}
+
 	static private int Set(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
 		String name = getString(context, PROP_ARG);
 		String value = getString(context, VALUE_ARG);
@@ -67,12 +91,13 @@ public class Command
 
 		try {
 			property.Decode(value);
-			return 1;
 		}
 		catch (IllegalArgumentException e) {
 			context.getSource().sendError(Text.literal(e.toString()));
 			return -1;
 		}
 
+		Get(context);
+		return 1;
 	}
 }
