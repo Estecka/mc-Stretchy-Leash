@@ -7,7 +7,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.client.realms.Request.Get;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
@@ -47,6 +46,7 @@ public class Command
 		);
 
 		root.then(config);
+		root.requires(s -> s.hasPermissionLevel(3));
 		dispatcher.register(root);
 	}
 
