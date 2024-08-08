@@ -10,8 +10,7 @@ With the default configuration:
 
 
 ## Config
-The config file is located at `.minecraft/config/stretchy-leash.properties`.
-It can be edited in-game using Mod-Menu + Cloth-Config.
+The config for clients can be edited using Mod-Menu + Cloth-Config. On servers, use the `/stretchy-leash config` command (admin-only).
 
 #### `gracePeriod` (Integer)
 Default: 35 ticks (1.75s)  

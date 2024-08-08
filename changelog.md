@@ -5,4 +5,7 @@
 - Marked as incompatible with MC 1.21
 
 # v2
+## 2.0.0
 - Ported to MC 1.21. Major rewrite.
+## 2.1.0
+- Added a command to change the config at runtime on dedicated server.

@@ -41,7 +41,7 @@ interface LeashableMixin
 	}
 
 
-	@Inject( method="tickLeash", at=@At(value="INVOKE", target="net/minecraft/entity/Leashable.shouldTickLeash(Lnet/minecraft/entity/Entity;F)Z") )
+	@Inject( method="tickLeash", at=@At(value="INVOKE", target="net/minecraft/entity/Leashable.beforeLeashTick(Lnet/minecraft/entity/Entity;F)Z") )
 	static private void UpdateGracePeriod(Entity leashed, CallbackInfo info, @Local(ordinal=1) Entity holder, @Local LeashData data, @Local float length){
 		StretchData customData = StretchData.Of(data);
 

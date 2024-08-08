@@ -20,6 +20,7 @@
 			"tk.estecka.stretchyleash.config.ModMenu"
 		],
 		"main": [
+			"tk.estecka.stretchyleash.StretchyLeashMod"
 		]
 	},
 	"mixins": [
@@ -28,6 +29,7 @@
 	"depends": {
 		"minecraft": "~1.21",
 		"fabricloader": ">=0.15.11",
+		"fabric-api": "*",
 		"java": ">=21"
 	},
 	"suggests": {

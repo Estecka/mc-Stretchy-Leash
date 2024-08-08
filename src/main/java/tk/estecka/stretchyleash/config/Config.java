@@ -10,7 +10,7 @@ public class Config
 extends ConfigIO.AFixedCoded
 {
 	public int    graceTicks   = 35;
-	public double lengthMax    = Leashable.field_52314;
+	public double lengthMax    = Leashable.MAX_LEASH_LENGTH;
 	public double pullStrength = 2.0;
 	public float  stepHeight   = 1.0f;
 
