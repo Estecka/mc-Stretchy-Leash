@@ -10,7 +10,7 @@ With the default configuration:
 
 
 ## Config
-The config for clients can be edited using Mod-Menu + Cloth-Config. On servers, use the `/stretchy-leash config` command.
+The config for clients can be edited using Mod-Menu + Cloth-Config. On servers, use the `/stretchy-leash config` command (admin-only).
 
 #### `gracePeriod` (Integer)
 Default: 35 ticks (1.75s)  
