@@ -21,6 +21,21 @@ repositories {
 	maven { url "https://maven.terraformersmc.com/releases/" }
 }
 
+loom {
+	runs {
+		client {
+			configName "Client"
+			programArgs "--username"
+			programArgs "Dev"
+			runDir "run/client"
+		}
+		server {
+			configName "Server"
+			runDir "run/server"
+		}
+	}
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -63,6 +78,7 @@ jar {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 
+	exclude "**/*.sh"
 	exclude "**/*.xcf"
 	exclude "**/*.psd"
 	exclude "**/*.psb"

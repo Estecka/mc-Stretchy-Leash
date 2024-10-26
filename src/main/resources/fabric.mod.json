@@ -9,7 +9,8 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/stretchy-leash/settings/description",
-		"sources": "https://github.com/Estecka/mc-Stretchy-Leash/"
+		"sources": "https://github.com/Estecka/mc-Stretchy-Leash",
+		"issues": "https://github.com/Estecka/mc-Stretchy-Leash/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/stretchy-leash/icon.png",
@@ -27,7 +28,7 @@
 		"stretchy-leash.mixins.json"
 	],
 	"depends": {
-		"minecraft": "~1.21",
+		"minecraft": "^1.21",
 		"fabricloader": ">=0.15.11",
 		"fabric-api": "*",
 		"java": ">=21"
