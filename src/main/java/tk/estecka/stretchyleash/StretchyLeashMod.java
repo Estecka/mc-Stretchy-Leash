@@ -32,6 +32,6 @@ public class StretchyLeashMod
 	static public void PlaySoundAtPlayer(Entity entity, SoundEvent event){
 		entity.playSound(event, 1f, 1f);
 		if (entity instanceof PlayerEntity player)
-			player.playSoundToPlayer(event, SoundCategory.NEUTRAL, 1.5f, 1f);
+			player.playSound(event, SoundCategory.NEUTRAL, 1.5f, 1f);
 	}
 }
