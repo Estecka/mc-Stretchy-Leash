@@ -1,4 +1,4 @@
-package tk.estecka.stretchyleash;
+package fr.estecka.stretchyleash;
 
 import java.io.IOException;
 import net.fabricmc.api.ModInitializer;
@@ -8,9 +8,10 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tk.estecka.stretchyleash.config.Command;
-import tk.estecka.stretchyleash.config.Config;
-import tk.estecka.stretchyleash.config.ConfigIO;
+import fr.estecka.stretchyleash.config.Command;
+import fr.estecka.stretchyleash.config.Config;
+import fr.estecka.stretchyleash.config.ConfigIO;
+
 
 public class StretchyLeashMod
 implements ModInitializer
@@ -33,10 +34,6 @@ implements ModInitializer
 		}
 	}
 
-	/**
-	 * In practice, the leader is not always a player, it may be a wandering 
-	 * trader or a fence post.
-	 */
 	static public void PlaySoundAtLeader(Entity leader, SoundEvent event){
 		leader.playSound(event, 1f, 1f);
 		if (leader instanceof PlayerEntity player)

@@ -1,4 +1,4 @@
-package tk.estecka.stretchyleash.config;
+package fr.estecka.stretchyleash.config;
 
 /*
  * # The MIT License (MIT)

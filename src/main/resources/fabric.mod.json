@@ -10,7 +10,7 @@
 	"contact": {
 		"homepage": "https://modrinth.com/mod/stretchy-leash/settings/description",
 		"sources": "https://github.com/Estecka/mc-Stretchy-Leash",
-		"issues": "https://github.com/Estecka/mc-Stretchy-Leash/issues"
+		"issues":  "https://github.com/Estecka/mc-Stretchy-Leash/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/stretchy-leash/icon.png",
@@ -18,17 +18,17 @@
 	"environment": "*",
 	"entrypoints": {
 		"modmenu": [
-			"tk.estecka.stretchyleash.config.ModMenu"
+			"fr.estecka.stretchyleash.config.ModMenu"
 		],
 		"main": [
-			"tk.estecka.stretchyleash.StretchyLeashMod"
+			"fr.estecka.stretchyleash.StretchyLeashMod"
 		]
 	},
 	"mixins": [
 		"stretchy-leash.mixins.json"
 	],
 	"depends": {
-		"minecraft": "^1.21 <1.21.6",
+		"minecraft": "^1.21.6 <1.21.11",
 		"fabricloader": ">=0.15.11",
 		"fabric-api": "*",
 		"java": ">=21"

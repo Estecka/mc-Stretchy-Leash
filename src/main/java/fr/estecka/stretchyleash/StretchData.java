@@ -1,7 +1,7 @@
-package tk.estecka.stretchyleash;
+package fr.estecka.stretchyleash;
 
 import net.minecraft.entity.Leashable.LeashData;
-import static tk.estecka.stretchyleash.StretchyLeashMod.CONFIG;
+import static fr.estecka.stretchyleash.StretchyLeashMod.CONFIG;
 
 
 /**
@@ -9,7 +9,7 @@ import static tk.estecka.stretchyleash.StretchyLeashMod.CONFIG;
  * directly in there due to mixin shenanigans.
  */
 public class StretchData {
-	public int graceTicks = CONFIG.graceTicks;
+	public int remainingGraceTicks = CONFIG.graceTicks;
 	public boolean wasStretching = false;
 
 

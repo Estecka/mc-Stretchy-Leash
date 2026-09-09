@@ -1,4 +1,4 @@
-package tk.estecka.stretchyleash.config;
+package fr.estecka.stretchyleash.config;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -13,15 +13,15 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import tk.estecka.stretchyleash.StretchyLeashMod;
-import tk.estecka.stretchyleash.config.ConfigIO.Property;
+import fr.estecka.stretchyleash.StretchyLeashMod;
+import fr.estecka.stretchyleash.config.ConfigIO.Property;
 import static com.mojang.brigadier.arguments.StringArgumentType.string;
 import static com.mojang.brigadier.arguments.StringArgumentType.greedyString;
 import static com.mojang.brigadier.arguments.StringArgumentType.getString;
 import static net.minecraft.server.command.CommandManager.literal;
 import static net.minecraft.server.command.CommandManager.argument;
-import static tk.estecka.stretchyleash.StretchyLeashMod.CONFIG;
-import static tk.estecka.stretchyleash.StretchyLeashMod.IO;
+import static fr.estecka.stretchyleash.StretchyLeashMod.CONFIG;
+import static fr.estecka.stretchyleash.StretchyLeashMod.IO;
 
 public class Command
 {

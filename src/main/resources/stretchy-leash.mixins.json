@@ -1,8 +1,9 @@
 {
 	"required": true,
-	"package": "tk.estecka.stretchyleash.mixin",
+	"package": "fr.estecka.stretchyleash.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"GhastEntityMixin",
 		"LeashableMixin",
 		"LeashableMixin$LeashDataMixin",
 		"LivingEntityMixin"

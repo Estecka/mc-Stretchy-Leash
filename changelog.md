@@ -13,3 +13,9 @@
 ### 2.1.1
 - Updated for MC 1.21.2
 - Fixed config not being written when edited from the command.
+
+# v3
+- Ported to MC 1.21.6
+- Renamed `maxLength` to `snapDistance`
+- Added `pullDistance`
+- Added `pullDistanceGhast` and `snapDistanceGhast`
