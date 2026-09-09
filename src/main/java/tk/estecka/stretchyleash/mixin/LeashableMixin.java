@@ -81,9 +81,9 @@ interface LeashableMixin
 	)
 	static private double ApplyGracePeriod(double original, @Local LeashData data){
 		if (StretchData.Of(data).graceTicks < 0)
-			return 0; // Leash should resist
+			return 0; // Leash should break
 		else
-			return Double.POSITIVE_INFINITY; // Leash should break
+			return Double.POSITIVE_INFINITY; // Leash should resist
 	}
 
 	@ModifyConstant(
