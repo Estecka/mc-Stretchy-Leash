@@ -2,7 +2,7 @@ package fr.estecka.stretchyleash.config;
 
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.entity.Leashable;
+import net.minecraft.world.entity.Leashable;
 import fr.estecka.stretchyleash.config.ConfigIO.Property;
 
 
@@ -12,9 +12,9 @@ extends ConfigIO.AFixedCoded
 	public int    graceTicks   = 35;
 	public float  stepHeight   = 1.0f;
 	public double pullStrength = 2.0;
-	public double pullDistance      = Leashable.DEFAULT_ELASTIC_DISTANCE;
+	public double pullDistance      = Leashable.LEASH_ELASTIC_DIST;
 	public double pullDistanceLarge = 10.0;
-	public double snapDistance      = Leashable.DEFAULT_SNAPPING_DISTANCE;
+	public double snapDistance      = Leashable.LEASH_TOO_FAR_DIST;
 	public double snapDistanceLarge = 16.0;
 
 	@Override

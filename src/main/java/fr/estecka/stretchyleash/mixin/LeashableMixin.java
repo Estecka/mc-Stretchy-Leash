@@ -8,11 +8,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.Leashable;
-import net.minecraft.entity.Leashable.Elasticity;
-import net.minecraft.entity.Leashable.LeashData;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Leashable;
+import net.minecraft.world.entity.Leashable.Wrench;
+import net.minecraft.world.entity.Leashable.LeashData;
+import net.minecraft.sounds.SoundEvents;
 import fr.estecka.stretchyleash.StretchData;
 import fr.estecka.stretchyleash.StretchyLeashMod;
 import fr.estecka.stretchyleash.StretchData.LeashDataDuck;
@@ -40,7 +40,7 @@ interface LeashableMixin
 		require = 1,
 		at = @At(
 			value = "INVOKE",
-			target = "net/minecraft/entity/Leashable.beforeLeashTick(Lnet/minecraft/entity/Entity;)V"
+			target = "net/minecraft/world/entity/Leashable.whenLeashedTo(Lnet/minecraft/world/entity/Entity;)V"
 		)
 	)
 	static private void UpdateGracePeriod(
@@ -56,12 +56,12 @@ interface LeashableMixin
 		if (leader == null)
 			stretchData.remainingGraceTicks = CONFIG.graceTicks;
 		else {
-			boolean isStretching = leash.getLeashSnappingDistance() < leashLength;
+			boolean isStretching = leash.leashSnapDistance() < leashLength;
 
 			if (isStretching) {
 				--stretchData.remainingGraceTicks;
 				if (!stretchData.wasStretching)
-					StretchyLeashMod.PlaySoundAtLeader(leader, SoundEvents.ITEM_CROSSBOW_LOADING_MIDDLE.value());
+					StretchyLeashMod.PlaySoundAtLeader(leader, SoundEvents.CROSSBOW_LOADING_MIDDLE.value());
 			}
 			else
 				stretchData.remainingGraceTicks = CONFIG.graceTicks;
@@ -78,7 +78,7 @@ interface LeashableMixin
 		method = "tickLeash",
 		at = @At(
 			value = "INVOKE",
-			target = "net/minecraft/entity/Leashable.getLeashSnappingDistance()D"
+			target = "net/minecraft/world/entity/Leashable.leashSnapDistance()D"
 		)
 	)
 	static private double ApplyGracePeriod(double original, @Local LeashData data){
@@ -89,23 +89,23 @@ interface LeashableMixin
 	}
 
 	@ModifyExpressionValue(
-		method = "applyElasticity",
+		method = "checkElasticInteractions",
 		at = @At(
 			value = "INVOKE",
-			target = "net/minecraft/entity/Leashable$Elasticity.multiply(D)Lnet/minecraft/entity/Leashable$Elasticity;"
+			target = "net/minecraft/world/entity/Leashable$Wrench.scale(D)Lnet/minecraft/world/entity/Leashable$Wrench;"
 		)
 	)
-	private Elasticity PullStrength(Elasticity original){
-		return original.multiply(CONFIG.pullStrength);
+	private Wrench PullStrength(Wrench original){
+		return original.scale(CONFIG.pullStrength);
 	}
 
 	@Overwrite
-	default public double getLeashSnappingDistance(){
+	default public double leashSnapDistance(){
 		return CONFIG.snapDistance;
 	}
 
 	@Overwrite
-	default public double getElasticLeashDistance(){
+	default public double leashElasticDistance(){
 		return CONFIG.pullDistance;
 	}
 }

@@ -2,12 +2,10 @@ package fr.estecka.stretchyleash;
 
 import java.io.IOException;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import fr.estecka.stretchyleash.config.Command;
@@ -39,14 +37,14 @@ implements ModInitializer
 	static public void PlaySoundAtLeader(Entity leader, SoundEvent sound){
 		// StretchyLeashMod.LOGGER.warn("Playing sound: {} {}", leader.isSilent(), leader);
 		leader.playSound(sound, 1f, 1f);
-		if (leader instanceof PlayerEntity player){
-			player.getEntityWorld().playSound(
+		if (leader instanceof Player player){
+			player.level().playSound(
 				null,
-				player.getEyePos().x,
-				player.getEyePos().y,
-				player.getEyePos().z,
+				player.getEyePosition().x,
+				player.getEyePosition().y,
+				player.getEyePosition().z,
 				sound,
-				SoundCategory.NEUTRAL,
+				SoundSource.NEUTRAL,
 				1.5f, // Volume
 				1f // Pitch
 			);

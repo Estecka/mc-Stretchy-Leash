@@ -1,6 +1,6 @@
 package fr.estecka.stretchyleash;
 
-import net.minecraft.entity.Leashable.LeashData;
+import net.minecraft.world.entity.Leashable.LeashData;
 import static fr.estecka.stretchyleash.StretchyLeashMod.CONFIG;
 
 
