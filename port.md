@@ -15,3 +15,8 @@ Initial release for v2.
 - Introduction of `Leashable::getLeashSnappingDistance`
 - Introduction of `Leashable::getElasticLeashDistance`
 - Introduction of `Leashable$Elasticity`
+
+## 1.21.11
+- `player::playSoundtoPlayer` was removed.
+- Playing a sound from the player is now overly complicated.
+- Permissions are now overly complicated.

@@ -6,6 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import fr.estecka.stretchyleash.config.Command;
@@ -34,9 +36,20 @@ implements ModInitializer
 		}
 	}
 
-	static public void PlaySoundAtLeader(Entity leader, SoundEvent event){
-		leader.playSound(event, 1f, 1f);
-		if (leader instanceof PlayerEntity player)
-			player.playSoundToPlayer(event, SoundCategory.NEUTRAL, 1.5f, 1f);
+	static public void PlaySoundAtLeader(Entity leader, SoundEvent sound){
+		// StretchyLeashMod.LOGGER.warn("Playing sound: {} {}", leader.isSilent(), leader);
+		leader.playSound(sound, 1f, 1f);
+		if (leader instanceof PlayerEntity player){
+			player.getEntityWorld().playSound(
+				null,
+				player.getEyePos().x,
+				player.getEyePos().y,
+				player.getEyePos().z,
+				sound,
+				SoundCategory.NEUTRAL,
+				1.5f, // Volume
+				1f // Pitch
+			);
+		}
 	}
 }
